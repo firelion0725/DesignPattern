@@ -24,6 +24,8 @@ import com.leo.pattern.structural.bridge.Bird;
 import com.leo.pattern.structural.bridge.Fish;
 import com.leo.pattern.structural.bridge.Fly;
 import com.leo.pattern.structural.bridge.Swim;
+import com.leo.pattern.structural.proxy.Image;
+import com.leo.pattern.structural.proxy.ProxyImage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -97,11 +99,23 @@ public class MainActivity extends AppCompatActivity {
         Log.i("testBuilder", "pizza:" + pizza);
     }
 
+    /**
+     * 桥接模式
+     */
     private void testBridge() {
         Animal animal1 = new Fish(new Swim());
         animal1.todo();
 
         Animal animal2 = new Bird(new Fly());
         animal2.todo();
+    }
+
+    /**
+     * 代理模式
+     */
+    private void testProxy() {
+        Image image = new ProxyImage();
+        //通过代理类完成工作，内部为实际类完成
+        image.displayImage();
     }
 }
