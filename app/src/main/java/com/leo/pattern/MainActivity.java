@@ -19,6 +19,11 @@ import com.leo.pattern.creational.single.HungryLazySingleton;
 import com.leo.pattern.creational.single.InnerSingleton;
 import com.leo.pattern.creational.single.LazySingleton;
 import com.leo.pattern.creational.single.SynchronizedLazySingleton;
+import com.leo.pattern.structural.bridge.Animal;
+import com.leo.pattern.structural.bridge.Bird;
+import com.leo.pattern.structural.bridge.Fish;
+import com.leo.pattern.structural.bridge.Fly;
+import com.leo.pattern.structural.bridge.Swim;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -90,5 +95,13 @@ public class MainActivity extends AppCompatActivity {
         Waiter waiter = new Waiter(new HawaiianPizzaBuilder());
         Pizza pizza = waiter.constructPizza();
         Log.i("testBuilder", "pizza:" + pizza);
+    }
+
+    private void testBridge() {
+        Animal animal1 = new Fish(new Swim());
+        animal1.todo();
+
+        Animal animal2 = new Bird(new Fly());
+        animal2.todo();
     }
 }
