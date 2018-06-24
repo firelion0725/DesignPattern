@@ -2,11 +2,17 @@ package com.leo.pattern;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-import com.leo.pattern.creational.abstract_factory.Color;
-import com.leo.pattern.creational.abstract_factory.ColorFactory;
+import com.leo.pattern.creational.abstract_factory.Button;
+import com.leo.pattern.creational.abstract_factory.MacFactory;
+import com.leo.pattern.creational.abstract_factory.WinFactory;
+import com.leo.pattern.creational.builder.HawaiianPizzaBuilder;
+import com.leo.pattern.creational.builder.Pizza;
+import com.leo.pattern.creational.builder.Waiter;
 import com.leo.pattern.creational.factory.Shape;
 import com.leo.pattern.creational.factory.ShapeFactory;
+import com.leo.pattern.creational.prototype.PrototypeDemo;
 import com.leo.pattern.creational.single.DoubleSynchronizedLazySingleton;
 import com.leo.pattern.creational.single.EnumSingleton;
 import com.leo.pattern.creational.single.HungryLazySingleton;
@@ -21,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testSingleton();
+//        testSingleton();
+//        testPrototype();
+        testBuilder();
     }
 
     /**
@@ -39,13 +47,11 @@ public class MainActivity extends AppCompatActivity {
      * 抽象工厂
      */
     private void testAbstractFactory() {
-        com.leo.pattern.creational.abstract_factory.ShapeFactory shapeFactory = new com.leo.pattern.creational.abstract_factory.ShapeFactory();
-        com.leo.pattern.creational.abstract_factory.Shape shape1 = shapeFactory.getShape(ShapeFactory.CIRCLE);
-        shape1.draw();
+        WinFactory winFactory = new WinFactory();
+        MacFactory macFactory = new MacFactory();
 
-        ColorFactory colorFactory = new ColorFactory();
-        Color color = colorFactory.getColor(ColorFactory.RED);
-        color.color();
+        Button button1 = winFactory.createButton();
+        Button button2 = macFactory.createButton();
     }
 
     /**
@@ -58,5 +64,31 @@ public class MainActivity extends AppCompatActivity {
         DoubleSynchronizedLazySingleton.getSingleton().show();
         InnerSingleton.getInstance().show();
         EnumSingleton.INSTANCE.show();
+    }
+
+    /**
+     * 原型模式
+     */
+    private void testPrototype() {
+        PrototypeDemo demo = new PrototypeDemo(1, "aaa");
+        Log.i("testPrototype", "demo:" + demo);
+        try {
+            PrototypeDemo demo2 = (PrototypeDemo) demo.clone();
+            Log.i("testPrototype", "demo2:" + demo2);
+            //对象是不同的，但是所属类是相同的
+            Log.i("testPrototype", "demo==demo2?" + (demo == demo2));
+            Log.i("testPrototype", "demo==demo2?" + (demo.getClass() == demo2.getClass()));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 构造者模式
+     */
+    private void testBuilder() {
+        Waiter waiter = new Waiter(new HawaiianPizzaBuilder());
+        Pizza pizza = waiter.constructPizza();
+        Log.i("testBuilder", "pizza:" + pizza);
     }
 }
