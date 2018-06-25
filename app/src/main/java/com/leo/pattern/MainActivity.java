@@ -24,6 +24,10 @@ import com.leo.pattern.structural.bridge.Bird;
 import com.leo.pattern.structural.bridge.Fish;
 import com.leo.pattern.structural.bridge.Fly;
 import com.leo.pattern.structural.bridge.Swim;
+import com.leo.pattern.structural.decorator.HorizontalScrollBar;
+import com.leo.pattern.structural.decorator.SimpleWindow;
+import com.leo.pattern.structural.decorator.VerticalScrollBar;
+import com.leo.pattern.structural.decorator.Window;
 import com.leo.pattern.structural.facade.Computer;
 import com.leo.pattern.structural.proxy.Image;
 import com.leo.pattern.structural.proxy.ProxyImage;
@@ -126,5 +130,15 @@ public class MainActivity extends AppCompatActivity {
     private void testacade() {
         Computer computer = new Computer();
         computer.startComputer();
+    }
+
+    /**
+     * 修饰模式
+     */
+    private void testDecorator() {
+        Window window1 = new SimpleWindow();
+        Window vertical = new VerticalScrollBar(window1);
+        Window horizontal = new HorizontalScrollBar(vertical);
+        horizontal.draw();
     }
 }
