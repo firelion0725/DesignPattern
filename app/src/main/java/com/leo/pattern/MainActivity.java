@@ -24,6 +24,7 @@ import com.leo.pattern.structural.bridge.Bird;
 import com.leo.pattern.structural.bridge.Fish;
 import com.leo.pattern.structural.bridge.Fly;
 import com.leo.pattern.structural.bridge.Swim;
+import com.leo.pattern.structural.facade.Computer;
 import com.leo.pattern.structural.proxy.Image;
 import com.leo.pattern.structural.proxy.ProxyImage;
 
@@ -117,5 +118,13 @@ public class MainActivity extends AppCompatActivity {
         Image image = new ProxyImage();
         //通过代理类完成工作，内部为实际类完成
         image.displayImage();
+    }
+
+    /**
+     * 外观模式
+     */
+    private void testacade() {
+        Computer computer = new Computer();
+        computer.startComputer();
     }
 }
