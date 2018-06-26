@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.leo.pattern.behavioral.chain_responsibility.Accounting;
+import com.leo.pattern.behavioral.chain_responsibility.JuniorAccount;
+import com.leo.pattern.behavioral.chain_responsibility.MiddleAccount;
+import com.leo.pattern.behavioral.chain_responsibility.SeniorAccount;
 import com.leo.pattern.creational.abstract_factory.Button;
 import com.leo.pattern.creational.abstract_factory.MacFactory;
 import com.leo.pattern.creational.abstract_factory.WinFactory;
@@ -44,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
 //        testSingleton();
 //        testPrototype();
-        testBuilder();
+//        testBuilder();
+        testChainResponsibility();
     }
 
     /**
@@ -151,5 +156,15 @@ public class MainActivity extends AppCompatActivity {
     private void testFlyWeight() {
         BMW bmw = (BMW) CarFlyWeightFactory.getCar(CarFactory.BMW);
         bmw.start();
+    }
+
+    /**
+     * 责任链模式
+     */
+    private void testChainResponsibility() {
+        Accounting seniorAccount = new SeniorAccount(null, 10000);
+        Accounting middleAccount = new MiddleAccount(seniorAccount, 1000);
+        Accounting juniorAccount = new JuniorAccount(middleAccount, 100);
+        juniorAccount.responsibility(90000);
     }
 }
