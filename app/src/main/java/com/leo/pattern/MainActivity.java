@@ -29,6 +29,9 @@ import com.leo.pattern.structural.decorator.SimpleWindow;
 import com.leo.pattern.structural.decorator.VerticalScrollBar;
 import com.leo.pattern.structural.decorator.Window;
 import com.leo.pattern.structural.facade.Computer;
+import com.leo.pattern.structural.flyweight.BMW;
+import com.leo.pattern.structural.flyweight.CarFactory;
+import com.leo.pattern.structural.flyweight.CarFlyWeightFactory;
 import com.leo.pattern.structural.proxy.Image;
 import com.leo.pattern.structural.proxy.ProxyImage;
 
@@ -140,5 +143,13 @@ public class MainActivity extends AppCompatActivity {
         Window vertical = new VerticalScrollBar(window1);
         Window horizontal = new HorizontalScrollBar(vertical);
         horizontal.draw();
+    }
+
+    /**
+     * 享元模式
+     */
+    private void testFlyWeight() {
+        BMW bmw = (BMW) CarFlyWeightFactory.getCar(CarFactory.BMW);
+        bmw.start();
     }
 }
