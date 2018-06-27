@@ -8,6 +8,11 @@ import com.leo.pattern.behavioral.chain_responsibility.Accounting;
 import com.leo.pattern.behavioral.chain_responsibility.JuniorAccount;
 import com.leo.pattern.behavioral.chain_responsibility.MiddleAccount;
 import com.leo.pattern.behavioral.chain_responsibility.SeniorAccount;
+import com.leo.pattern.behavioral.command.Command;
+import com.leo.pattern.behavioral.command.FlipDownCommand;
+import com.leo.pattern.behavioral.command.FlipUpCommand;
+import com.leo.pattern.behavioral.command.Light;
+import com.leo.pattern.behavioral.command.Switch;
 import com.leo.pattern.creational.abstract_factory.Button;
 import com.leo.pattern.creational.abstract_factory.MacFactory;
 import com.leo.pattern.creational.abstract_factory.WinFactory;
@@ -166,5 +171,19 @@ public class MainActivity extends AppCompatActivity {
         Accounting middleAccount = new MiddleAccount(seniorAccount, 1000);
         Accounting juniorAccount = new JuniorAccount(middleAccount, 100);
         juniorAccount.responsibility(90000);
+    }
+
+    /**
+     * 命令模式
+     */
+    private void testCommand() {
+        Light light = new Light();
+        Command flipUp = new FlipUpCommand(light);
+        Command flipDown = new FlipDownCommand(light);
+
+        Switch sw = new Switch();
+
+        sw.storeAndExecute(flipDown);
+        sw.storeAndExecute(flipUp);
     }
 }
