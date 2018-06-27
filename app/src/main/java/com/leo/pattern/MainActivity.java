@@ -18,6 +18,9 @@ import com.leo.pattern.behavioral.strategy.Scenes;
 import com.leo.pattern.behavioral.strategy.SecondStrategy;
 import com.leo.pattern.behavioral.strategy.ThirdStrategy;
 import com.leo.pattern.behavioral.template.Monopoly;
+import com.leo.pattern.behavioral.visitor.Company;
+import com.leo.pattern.behavioral.visitor.Visitor;
+import com.leo.pattern.behavioral.visitor.VisitorImpl;
 import com.leo.pattern.creational.abstract_factory.Button;
 import com.leo.pattern.creational.abstract_factory.MacFactory;
 import com.leo.pattern.creational.abstract_factory.WinFactory;
@@ -214,5 +217,14 @@ public class MainActivity extends AppCompatActivity {
         Monopoly monopoly = new Monopoly();
         monopoly.start();
         monopoly.stop();
+    }
+
+    /**
+     * 访问者模式
+     */
+    private void testVisitor() {
+        Visitor visitorImpl = new VisitorImpl();
+        Company company = new Company();
+        company.accept(visitorImpl);
     }
 }
