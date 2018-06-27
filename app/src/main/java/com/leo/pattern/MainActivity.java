@@ -13,6 +13,10 @@ import com.leo.pattern.behavioral.command.FlipDownCommand;
 import com.leo.pattern.behavioral.command.FlipUpCommand;
 import com.leo.pattern.behavioral.command.Light;
 import com.leo.pattern.behavioral.command.Switch;
+import com.leo.pattern.behavioral.strategy.FirstStrategy;
+import com.leo.pattern.behavioral.strategy.Scenes;
+import com.leo.pattern.behavioral.strategy.SecondStrategy;
+import com.leo.pattern.behavioral.strategy.ThirdStrategy;
 import com.leo.pattern.creational.abstract_factory.Button;
 import com.leo.pattern.creational.abstract_factory.MacFactory;
 import com.leo.pattern.creational.abstract_factory.WinFactory;
@@ -185,5 +189,20 @@ public class MainActivity extends AppCompatActivity {
 
         sw.storeAndExecute(flipDown);
         sw.storeAndExecute(flipUp);
+    }
+
+    /**
+     * 策略模式
+     */
+    private void testStrategy() {
+        FirstStrategy firstStrategy = new FirstStrategy();
+        Scenes scenes = new Scenes(firstStrategy);
+        scenes.work();
+        SecondStrategy secondStrategy = new SecondStrategy();
+        scenes = new Scenes(secondStrategy);
+        scenes.work();
+        ThirdStrategy thirdStrategy = new ThirdStrategy();
+        scenes = new Scenes(thirdStrategy);
+        scenes.work();
     }
 }

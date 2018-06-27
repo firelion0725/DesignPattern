@@ -1,7 +1,5 @@
 package com.leo.pattern.behavioral.command;
 
-import com.leo.pattern.creational.abstract_factory.AbstractFactory;
-
 /**
  * @author leo, ZhangWei
  * @date 2018/6/27
