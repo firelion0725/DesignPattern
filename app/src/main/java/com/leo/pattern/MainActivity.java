@@ -17,6 +17,7 @@ import com.leo.pattern.behavioral.strategy.FirstStrategy;
 import com.leo.pattern.behavioral.strategy.Scenes;
 import com.leo.pattern.behavioral.strategy.SecondStrategy;
 import com.leo.pattern.behavioral.strategy.ThirdStrategy;
+import com.leo.pattern.behavioral.template.Monopoly;
 import com.leo.pattern.creational.abstract_factory.Button;
 import com.leo.pattern.creational.abstract_factory.MacFactory;
 import com.leo.pattern.creational.abstract_factory.WinFactory;
@@ -204,5 +205,14 @@ public class MainActivity extends AppCompatActivity {
         ThirdStrategy thirdStrategy = new ThirdStrategy();
         scenes = new Scenes(thirdStrategy);
         scenes.work();
+    }
+
+    /**
+     * 模板模式
+     */
+    private void testTemplate() {
+        Monopoly monopoly = new Monopoly();
+        monopoly.start();
+        monopoly.stop();
     }
 }
