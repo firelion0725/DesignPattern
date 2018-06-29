@@ -13,6 +13,8 @@ import com.leo.pattern.behavioral.command.FlipDownCommand;
 import com.leo.pattern.behavioral.command.FlipUpCommand;
 import com.leo.pattern.behavioral.command.Light;
 import com.leo.pattern.behavioral.command.Switch;
+import com.leo.pattern.behavioral.memento.CareTaker;
+import com.leo.pattern.behavioral.memento.Originator;
 import com.leo.pattern.behavioral.strategy.FirstStrategy;
 import com.leo.pattern.behavioral.strategy.Scenes;
 import com.leo.pattern.behavioral.strategy.SecondStrategy;
@@ -226,5 +228,25 @@ public class MainActivity extends AppCompatActivity {
         Visitor visitorImpl = new VisitorImpl();
         Company company = new Company();
         company.accept(visitorImpl);
+    }
+
+    /**
+     * 备忘录模式
+     */
+    private void testMemento() {
+        Originator originator = new Originator();
+        CareTaker careTaker = new CareTaker();
+        originator.setState("State #1");
+        originator.setState("State #2");
+        careTaker.add(originator.saveStateToMemento());
+        originator.setState("State #3");
+        careTaker.add(originator.saveStateToMemento());
+        originator.setState("State #4");
+
+        System.out.println("Current State: " + originator.getState());
+        originator.getStateFromMemento(careTaker.get(0));
+        System.out.println("First saved State: " + originator.getState());
+        originator.getStateFromMemento(careTaker.get(1));
+        System.out.println("Second saved State: " + originator.getState());
     }
 }
