@@ -15,6 +15,8 @@ import com.leo.pattern.behavioral.command.Light;
 import com.leo.pattern.behavioral.command.Switch;
 import com.leo.pattern.behavioral.memento.CareTaker;
 import com.leo.pattern.behavioral.memento.Originator;
+import com.leo.pattern.behavioral.observer.BinaryObserver;
+import com.leo.pattern.behavioral.observer.Subject;
 import com.leo.pattern.behavioral.strategy.FirstStrategy;
 import com.leo.pattern.behavioral.strategy.Scenes;
 import com.leo.pattern.behavioral.strategy.SecondStrategy;
@@ -248,5 +250,16 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("First saved State: " + originator.getState());
         originator.getStateFromMemento(careTaker.get(1));
         System.out.println("Second saved State: " + originator.getState());
+    }
+
+    private void testObserver(){
+        Subject subject = new Subject();
+
+        new BinaryObserver(subject);
+
+        System.out.println("First state change: 15");
+        subject.setState(15);
+        System.out.println("Second state change: 10");
+        subject.setState(10);
     }
 }
