@@ -1,6 +1,5 @@
 package com.leo.pattern;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +13,9 @@ import com.leo.pattern.behavioral.command.FlipDownCommand;
 import com.leo.pattern.behavioral.command.FlipUpCommand;
 import com.leo.pattern.behavioral.command.Light;
 import com.leo.pattern.behavioral.command.Switch;
+import com.leo.pattern.behavioral.mediator.Mediator;
+import com.leo.pattern.behavioral.mediator.NormalUser;
+import com.leo.pattern.behavioral.mediator.VipUser;
 import com.leo.pattern.behavioral.memento.CareTaker;
 import com.leo.pattern.behavioral.memento.Originator;
 import com.leo.pattern.behavioral.observer.BinaryObserver;
@@ -74,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
 //        testSingleton();
 //        testPrototype();
 //        testBuilder();
-        testChainResponsibility();
+//        testChainResponsibility();
+        testMediator();
     }
 
     /**
@@ -302,5 +305,16 @@ public class MainActivity extends AppCompatActivity {
 
         context.setState(stop);
         context.handle();
+    }
+
+    /**
+     * 中介者模式
+     */
+    private void testMediator() {
+        Mediator mediator = new Mediator();
+        NormalUser normalUser = new NormalUser();
+        VipUser vipUser = new VipUser();
+
+        mediator.handle(vipUser, normalUser);
     }
 }
