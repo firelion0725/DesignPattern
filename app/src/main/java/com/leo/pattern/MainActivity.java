@@ -45,6 +45,9 @@ import com.leo.pattern.structural.bridge.Bird;
 import com.leo.pattern.structural.bridge.Fish;
 import com.leo.pattern.structural.bridge.Fly;
 import com.leo.pattern.structural.bridge.Swim;
+import com.leo.pattern.structural.composite.ChildComposite;
+import com.leo.pattern.structural.composite.NodeComposite;
+import com.leo.pattern.structural.composite.Root;
 import com.leo.pattern.structural.decorator.HorizontalScrollBar;
 import com.leo.pattern.structural.decorator.SimpleWindow;
 import com.leo.pattern.structural.decorator.VerticalScrollBar;
@@ -252,7 +255,10 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Second saved State: " + originator.getState());
     }
 
-    private void testObserver(){
+    /**
+     * 观察者模式
+     */
+    private void testObserver() {
         Subject subject = new Subject();
 
         new BinaryObserver(subject);
@@ -261,5 +267,20 @@ public class MainActivity extends AppCompatActivity {
         subject.setState(15);
         System.out.println("Second state change: 10");
         subject.setState(10);
+    }
+
+    /**
+     * 组合模式
+     */
+    private void testComposite() {
+
+        Root root = new Root();
+        ChildComposite childComposite = new ChildComposite();
+        NodeComposite nodeComposite = new NodeComposite();
+
+        root.add(childComposite);
+        root.add(nodeComposite);
+
+        root.action();
     }
 }
