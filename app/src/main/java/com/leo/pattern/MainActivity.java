@@ -1,5 +1,6 @@
 package com.leo.pattern;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,6 +18,10 @@ import com.leo.pattern.behavioral.memento.CareTaker;
 import com.leo.pattern.behavioral.memento.Originator;
 import com.leo.pattern.behavioral.observer.BinaryObserver;
 import com.leo.pattern.behavioral.observer.Subject;
+import com.leo.pattern.behavioral.state.StartState;
+import com.leo.pattern.behavioral.state.State;
+import com.leo.pattern.behavioral.state.StateContext;
+import com.leo.pattern.behavioral.state.StopState;
 import com.leo.pattern.behavioral.strategy.FirstStrategy;
 import com.leo.pattern.behavioral.strategy.Scenes;
 import com.leo.pattern.behavioral.strategy.SecondStrategy;
@@ -282,5 +287,20 @@ public class MainActivity extends AppCompatActivity {
         root.add(nodeComposite);
 
         root.action();
+    }
+
+    /**
+     * 状态模式
+     */
+    private void testState() {
+        State start = new StartState();
+        State stop = new StopState();
+
+        StateContext context = new StateContext();
+        context.setState(start);
+        context.handle();
+
+        context.setState(stop);
+        context.handle();
     }
 }
