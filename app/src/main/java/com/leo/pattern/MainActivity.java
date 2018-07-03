@@ -13,6 +13,9 @@ import com.leo.pattern.behavioral.command.FlipDownCommand;
 import com.leo.pattern.behavioral.command.FlipUpCommand;
 import com.leo.pattern.behavioral.command.Light;
 import com.leo.pattern.behavioral.command.Switch;
+import com.leo.pattern.behavioral.interpreter.Expression;
+import com.leo.pattern.behavioral.interpreter.OrExpression;
+import com.leo.pattern.behavioral.interpreter.TerminalExpression;
 import com.leo.pattern.behavioral.mediator.Mediator;
 import com.leo.pattern.behavioral.mediator.NormalUser;
 import com.leo.pattern.behavioral.mediator.VipUser;
@@ -316,5 +319,16 @@ public class MainActivity extends AppCompatActivity {
         VipUser vipUser = new VipUser();
 
         mediator.handle(vipUser, normalUser);
+    }
+
+    /**
+     * 解释器模式
+     */
+    private void testInterpreter() {
+        Expression robert = new TerminalExpression("Robert");
+        Expression john = new TerminalExpression("John");
+        Expression ori = new OrExpression(robert, john);
+
+        System.out.println("John is male? " + ori.interpret("John"));
     }
 }
