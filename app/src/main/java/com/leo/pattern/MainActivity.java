@@ -16,6 +16,8 @@ import com.leo.pattern.behavioral.command.Switch;
 import com.leo.pattern.behavioral.interpreter.Expression;
 import com.leo.pattern.behavioral.interpreter.OrExpression;
 import com.leo.pattern.behavioral.interpreter.TerminalExpression;
+import com.leo.pattern.behavioral.iterator.Iterator;
+import com.leo.pattern.behavioral.iterator.NameRepository;
 import com.leo.pattern.behavioral.mediator.Mediator;
 import com.leo.pattern.behavioral.mediator.NormalUser;
 import com.leo.pattern.behavioral.mediator.VipUser;
@@ -344,5 +346,17 @@ public class MainActivity extends AppCompatActivity {
 
         KeyBroad keyBroad = new KeyBroad(adapter);
         keyBroad.action();
+    }
+
+    /**
+     * 迭代器模式
+     */
+    private void testIterator() {
+        NameRepository namesRepository = new NameRepository();
+
+        for (Iterator iter = namesRepository.getIterator(); iter.hasNext(); ) {
+            String name = (String) iter.next();
+            System.out.println("Name : " + name);
+        }
     }
 }
