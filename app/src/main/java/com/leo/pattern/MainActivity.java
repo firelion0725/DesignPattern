@@ -50,6 +50,9 @@ import com.leo.pattern.creational.single.HungryLazySingleton;
 import com.leo.pattern.creational.single.InnerSingleton;
 import com.leo.pattern.creational.single.LazySingleton;
 import com.leo.pattern.creational.single.SynchronizedLazySingleton;
+import com.leo.pattern.structural.adapter.KeyAdapter;
+import com.leo.pattern.structural.adapter.KeyBroad;
+import com.leo.pattern.structural.adapter.P2P;
 import com.leo.pattern.structural.bridge.Animal;
 import com.leo.pattern.structural.bridge.Bird;
 import com.leo.pattern.structural.bridge.Fish;
@@ -330,5 +333,16 @@ public class MainActivity extends AppCompatActivity {
         Expression ori = new OrExpression(robert, john);
 
         System.out.println("John is male? " + ori.interpret("John"));
+    }
+
+    /**
+     * 适配器模式
+     */
+    private void testAdapter() {
+        P2P p2p = new P2P("this is a p2p data");
+        KeyAdapter adapter = new KeyAdapter(p2p);
+
+        KeyBroad keyBroad = new KeyBroad(adapter);
+        keyBroad.action();
     }
 }
