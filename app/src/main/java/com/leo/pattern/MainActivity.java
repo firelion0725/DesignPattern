@@ -73,6 +73,11 @@ import com.leo.pattern.structural.flyweight.CarFactory;
 import com.leo.pattern.structural.flyweight.CarFlyWeightFactory;
 import com.leo.pattern.structural.proxy.Image;
 import com.leo.pattern.structural.proxy.ProxyImage;
+import com.leo.pattern.structural.proxy_dynamic.UserService;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
 //        testPrototype();
 //        testBuilder();
 //        testChainResponsibility();
-        testMediator();
+//        testMediator();
+        testDynamicPorxy();
     }
 
     /**
@@ -358,5 +364,17 @@ public class MainActivity extends AppCompatActivity {
             String name = (String) iter.next();
             System.out.println("Name : " + name);
         }
+    }
+
+    private void testDynamicPorxy() {
+        Class clazz = UserService.class;
+        UserService userService  = (UserService)  Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, new InvocationHandler() {
+            @Override
+            public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
+                return method.invoke(o,objects);
+            }
+        });
+
+        Log.i("aaaaaaaaaaaaaa","data:" + userService);
     }
 }
